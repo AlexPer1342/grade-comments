@@ -1,19 +1,45 @@
-# 🎈 Blank app template
+# 🎓 Komentarų ir pažymių generatorius prie mokinio darbo
 
-A simple Streamlit app template for you to modify!
+Ši Streamlit aplikacija padeda mokytojams automatiškai sugeneruoti komentarus ir pažymius remiantis mokinių surinktais taškais.
 
-[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://blank-app-template.streamlit.app/)
+## ✅ Funkcionalumas
 
-### How to run it on your own machine
+- Įvertinimo komentarai generuojami pagal šabloną:
+  > Surinko ... balų iš ... Teisingai atliko ...% užduočių. Pasiekimų lygis - ...
+- Pridedamas papildomas komentaras, jei pasiekimų lygis yra **nepatenkinamas**.
+- Galima:
+  - Įvesti duomenis rankiniu būdu
+  - Įkelti vieną ar kelis Excel failus
+- Galima atsisiųsti papildytus failus su stulpeliais **„Pažymis“** ir **„Komentaras“**
+- Mėlynos minimalistinės sąsajos dizainas
 
-1. Install the requirements
+## 📁 Failo struktūra
 
-   ```
-   $ pip install -r requirements.txt
-   ```
+Įkeltame Excel faile turi būti šie stulpeliai:
 
-2. Run the app
+| Mokinio vardas pavardė | Max taškų skaičius | Surinko |
+|------------------------|--------------------|---------|
+| Vardenis Pavardenis    | 20                 | 15      |
 
-   ```
-   $ streamlit run streamlit_app.py
-   ```
+## 🧮 Pažymio skaičiavimas
+
+Pažymys apskaičiuojamas pagal 10 balų sistemą:
+
+- Procentai = (Surinko / Max taškų skaičius) * 100
+- Pažymys = Procentai / 10, apvalinant (1,5 → 2; 1,4 → 1)
+
+### Pasiekimų lygiai
+
+| Pažymys | Lygis         |
+|--------|---------------|
+| 9-10   | aukštesnysis  |
+| 7-8    | pagrindinis   |
+| 5-6    | patenkinamas  |
+| 4      | slenkstinis   |
+| 1-3    | nepatenkinamas |
+
+## 🚀 Paleidimas
+
+```bash
+pip install -r requirements.txt
+streamlit run app.py
